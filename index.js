@@ -18,7 +18,7 @@ const client = new MongoClient(uri, {
 
 const run = async () => {
   try {
-    const db = client.db("blog_site_redux");
+    const db = client.db("big-dashboard");
     const blogCollection = db.collection("blogs");
     console.log("db is connected");
     //
