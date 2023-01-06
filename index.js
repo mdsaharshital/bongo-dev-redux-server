@@ -43,6 +43,30 @@ const run = async () => {
       const result = await blogCollection.deleteOne({ _id: ObjectId(id) });
       res.send(result);
     });
+    app.put("/blog", async (req, res) => {
+      const blog = req.body.blog;
+      const id = req.body.id;
+      const newBlog = {
+        source: blog.source,
+        topic: blog.topic,
+        author: blog.author,
+        title: blog.title,
+        content: blog.content,
+        description: blog.description,
+        urlToImage: blog.urlToImage,
+        publishedAt: blog.publishedAt,
+      };
+      console.log("", newBlog);
+      // create a document that sets the plot of the movie
+      const updateDoc = {
+        $set: newBlog,
+      };
+      const result = await blogCollection.updateOne(
+        { _id: ObjectId(id) },
+        updateDoc
+      );
+      res.send(result);
+    });
   } finally {
   }
 };
